@@ -1,5 +1,3 @@
-declare let module: any
-
 import * as React from 'react';
 import styled from 'styled-components';
 
@@ -16,7 +14,7 @@ const TestH1 = styled.h1`
 
 class Test extends React.Component<IProps, {}> {
    render() {
-   return <TestH1>This is a {this.props.framework} application using    {this.props.compiler} with {this.props.bundler}</TestH1>
+    return <TestH1>This is a {this.props.framework} application using    {this.props.compiler} with {this.props.bundler}</TestH1>
    }
 }
 
