@@ -12,6 +12,13 @@ app.get('/', (req, res) => {
    res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
 });
 
+//Check dev mode
+process.argv.forEach(function (val) {
+    if(val === 'dev') {
+        webpackConfig.mode = 'development';
+    }
+});
+
 let compiler = webpack(webpackConfig);
 
 app.use(require('webpack-dev-middleware')(compiler, {
