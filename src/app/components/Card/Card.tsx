@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import styled from 'styled-components';
 
 interface CardProps {
@@ -7,12 +7,20 @@ interface CardProps {
 
 const CardWrapper = styled.div`
     width: 200px;
-`
+`;
+const CardCover = styled.img`
+    max-width: 100%;
+`;
+const CardTitle = styled.p`
+    font-size: 1.2em;
+    margin: 5px 0;
+`;
 
 const Card: React.SFC<CardProps> = (props) => {
     return (
         <CardWrapper className="hyakka-card">
-            <img src={props.image} />
+            <CardCover src={props.image} />
+            <CardTitle>Test title</CardTitle>
         </CardWrapper>
     );
 }

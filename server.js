@@ -1,3 +1,11 @@
+/*
+    In case I need to switch back to this server:
+
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run build && node server.js dev"
+*/
+
 const path = require('path'),
    express = require('express'),
    webpack = require('webpack'),
