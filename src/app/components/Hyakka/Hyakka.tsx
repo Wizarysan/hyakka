@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Card from '../Card/Card';
+import CardsList from '../CardsList/CardsList';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { createGlobalStyle } from 'styled-components'
 
@@ -15,7 +15,7 @@ export default class Hyakka extends React.Component {
         return (
             <div className="hyakka">
                 <Router>
-                    <Card image="https://kawai.shikimori.org/system/animes/original/37991.jpg"/>                    
+                    <Route path="/" exact component={CardsList} />                    
                 </Router>
                 <GlobalStyle />
             </div>
