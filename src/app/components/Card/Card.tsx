@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import styled from 'styled-components';
 
 interface CardProps {
@@ -19,8 +20,10 @@ const CardTitle = styled.p`
 const Card: React.SFC<CardProps> = (props) => {
     return (
         <CardWrapper className="hyakka-card">
-            <CardCover src={props.image} />
-            <CardTitle>Test title</CardTitle>
+            <Link to="/fullcard">
+                <CardCover src={props.image} />
+                <CardTitle>Test title</CardTitle>
+            </Link>
         </CardWrapper>
     );
 }

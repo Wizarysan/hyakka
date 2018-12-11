@@ -3,4 +3,4 @@
 #### Includes: 
 React, Redux, Typescript, Styled Components
 
-Global styles in Hyakka.tsx
+Global styles and Router is in Hyakka.tsx

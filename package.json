@@ -20,11 +20,14 @@
   },
   "homepage": "https://github.com/Wizarysan/hyakka#readme",
   "dependencies": {
+    "@types/react-router-dom": "^4.3.1",
     "express": "^4.16.4",
     "opn": "^5.4.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-redux": "^6.0.0",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
     "redux": "^4.0.1",
     "typescript": "^3.2.1"
   },
