@@ -13,7 +13,7 @@ const CardsListWrapper = styled.div`
 const CardsList: React.SFC<CardsListProps> = (props) => {
         return (
             <CardsListWrapper className="hyakka-card-list">
-                <Card image="https://kawai.shikimori.org/system/animes/original/37991.jpg"/>
+                <Card image="https://s.vndb.org/cv/76/26976.jpg"/>
             </CardsListWrapper>
         ) 
 }
