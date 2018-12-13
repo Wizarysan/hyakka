@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import styled from 'styled-components';
 
 interface CardProps {
-    image: string
+    image: string;
 }
 
 const CardWrapper = styled.div`

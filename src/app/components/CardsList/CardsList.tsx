@@ -3,7 +3,7 @@ import Card from '../Card/Card';
 import styled from 'styled-components';
 
 interface CardsListProps {
-    cards: Object[]
+    cards: Object[];
 }
 
 const CardsListWrapper = styled.div`
