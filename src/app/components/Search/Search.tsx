@@ -3,11 +3,15 @@ import styled from 'styled-components';
 import CardsList from '../CardsList/CardsList';
 import SearchForm from '../SearchForm/SearchForm';
 
+import { bindActionCreators } from 'redux';
+import {connect} from 'react-redux';
+import * as searchActions from './SearchDuck';
+
 const SearchWrapper = styled.div`
     padding: 20px;
 `
 
-export default class Search extends React.Component {
+class Search extends React.Component {
     render() {
         return (
             <SearchWrapper className="hyakka-search">
@@ -17,3 +21,19 @@ export default class Search extends React.Component {
         )        
     }
 }
+
+function mapStateToProps(state: any) {
+    return {
+      city: state.city,
+      galMap: state.galMap
+    };
+  }
+  
+  function mapDispatchToProps(dispatch: any) {
+    return {
+      actions: bindActionCreators(searchActions, dispatch)
+    }
+  }
+  
+
+export default connect(mapStateToProps, mapDispatchToProps)(Search);
