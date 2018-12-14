@@ -5,7 +5,8 @@ import SearchForm from '../SearchForm/SearchForm';
 
 import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
-import * as searchActions from './SearchDuck';
+import {State} from './../../types/State';
+import {searchActions} from './SearchDuck';
 
 const SearchWrapper = styled.div`
     padding: 20px;
@@ -22,16 +23,15 @@ class Search extends React.Component {
     }
 }
 
-function mapStateToProps(state: any) {
+function mapStateToProps(state: State) {
     return {
-      city: state.city,
-      galMap: state.galMap
+      search: state.search
     };
   }
   
   function mapDispatchToProps(dispatch: any) {
     return {
-      actions: bindActionCreators(searchActions, dispatch)
+      actions: bindActionCreators<any, any>(searchActions, dispatch)
     }
   }
   

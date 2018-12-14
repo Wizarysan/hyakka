@@ -4,7 +4,7 @@ import initialState from './../../store/initialState';
 const SET_CITY = 'app/City/SET_CITY';
 
 //Reducer
-export default function reducer(state = initialState.city, action) {
+export default function reducer(state = initialState.search, action) {
   switch (action.type) {
     case SET_CITY:      
       return action.city;
@@ -14,9 +14,11 @@ export default function reducer(state = initialState.city, action) {
 }
 
 //Action Creators
-export function setCity(city) {
-  return {
-    type: SET_CITY,
-    city
-  }
+export const searchActions: Object = {
+    setCity: (city: string) => {
+        return {
+            type: SET_SEARCH,
+            city
+        }
+    }
 }
