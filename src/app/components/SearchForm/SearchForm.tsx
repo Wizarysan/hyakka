@@ -2,6 +2,10 @@ import * as React from 'react';
 import styled from 'styled-components';
 import Button from '../_Generic/Button/Button';
 
+interface SearchFormProps {
+    click: Function
+}
+
 const SearchFormWrapper = styled.div`
     padding-left: 15px;
 `
@@ -15,13 +19,13 @@ const SearchFormInput = styled.input`
     }
 `
 
-export default class SearchForm extends React.Component {
+export default class SearchForm extends React.Component<SearchFormProps> {
     render() {
         return (
             <SearchFormWrapper className="hyakka-search-form">
                 <form>
                     <SearchFormInput type="text" />
-                    <Button primary>Search</Button>
+                    <Button click={this.props.click} primary>Search</Button>
                 </form>                
             </SearchFormWrapper>
         )        

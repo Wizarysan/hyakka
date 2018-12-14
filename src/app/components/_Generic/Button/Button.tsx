@@ -2,8 +2,9 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 interface ButtonProps {
-    children: string;
-    primary?: boolean;
+    children: string,
+    primary?: boolean,
+    click?: Function
 }
 
 const StyledButton = styled.button`
@@ -16,9 +17,10 @@ const StyledButton = styled.button`
 `;
 
 const Button: React.SFC<ButtonProps> = (props) => {
+    const {children, primary, click} = props;
     return (
-        <StyledButton primary={props.primary} className="hyakka-button">
-            {props.children}
+        <StyledButton onClick={(e)=>{e.preventDefault(); click('button1')}} primary={primary} className="hyakka-button">
+            {children}
         </StyledButton>
     );
 }

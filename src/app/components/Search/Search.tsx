@@ -9,15 +9,21 @@ import {connect} from 'react-redux';
 import {State} from './../../types/State';
 import {searchActions} from './SearchDuck';
 
+interface SearchProps {
+    search: string,
+    actions: any
+}
+
 const SearchWrapper = styled.div`
     padding: 20px;
 `
 
-class Search extends React.Component {
+class Search extends React.Component<SearchProps> {
     render() {
         return (
             <SearchWrapper className="hyakka-search">
-                <SearchForm />
+                <SearchForm click={this.props.actions.setSearch}/>
+                <div onClick={()=>this.props.actions.setSearch('321')}>{this.props.search}</div>
                 <CardsList cards={[]} />
             </SearchWrapper>
         )        
