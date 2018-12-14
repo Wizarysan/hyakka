@@ -1,13 +1,18 @@
+//https://github.com/adityapurwa/typescript-redux
 import initialState from './../../store/initialState';
+import {PayloadedAction, createPayloadedAction} from './../../types/Actions';
 
 //Actions
-const SET_CITY = 'app/City/SET_CITY';
+interface SetSearch extends PayloadedAction<"app/SET_SEARCH", string> {}
+
+//For several actions try:
+//type SearchAction = SetSearch | SomeOtherAction;
 
 //Reducer
-export default function reducer(state = initialState.search, action) {
+export default function reducer(state = initialState.search, action: SetSearch) {
   switch (action.type) {
-    case SET_CITY:      
-      return action.city;
+    case "app/SET_SEARCH":      
+      return action.payload;
     default:
       return state;
   }
@@ -15,10 +20,5 @@ export default function reducer(state = initialState.search, action) {
 
 //Action Creators
 export const searchActions: Object = {
-    setCity: (city: string) => {
-        return {
-            type: SET_SEARCH,
-            city
-        }
-    }
+    setSearch: createPayloadedAction<SetSearch>("app/SET_SEARCH")
 }

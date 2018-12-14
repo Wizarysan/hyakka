@@ -1,3 +1,4 @@
+//https://spin.atomicobject.com/2017/04/20/typesafe-container-components/
 import * as React from 'react';
 import styled from 'styled-components';
 import CardsList from '../CardsList/CardsList';
