@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import Button from '../_Generic/Button/Button';
 
 interface SearchFormProps {
-    click: Function
+    click: Function,
+    searchHandler: Function
 }
 
 const SearchFormWrapper = styled.div`
@@ -25,7 +26,12 @@ export default class SearchForm extends React.Component<SearchFormProps> {
             <SearchFormWrapper className="hyakka-search-form">
                 <form>
                     <SearchFormInput type="text" />
-                    <Button click={this.props.click} primary>Search</Button>
+                    <Button click={
+                        ()=> {
+                                this.props.click('Test')
+                                this.props.searchHandler('Test')
+                            }
+                        } primary>Search</Button>
                 </form>                
             </SearchFormWrapper>
         )        

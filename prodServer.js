@@ -21,12 +21,12 @@ request('http://www.google.com', function (error, response, body) {
   }
 });
 
+//https://github.com/Permagate/vndb-reborn
 (async () => {
     try {
         const vndb = await VNDB.start();
         const res0 = await vndb.write('login {"protocol":1,"client":"VNDB-Reborn-Tester","clientver":"0.0.1"}');
-        const res1 = await vndb.write('dbstats');
-        const res2 = await vndb.write('get vn basic,anime (id = 17)');
+        const res2 = await vndb.write('get vn basic,details,tags (search ~ "witch")');
         console.log(res2);
         await vndb.end();
     } catch (e) {
