@@ -29,6 +29,7 @@
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.1",
     "request": "^2.88.0",
+    "ts-promise": "^2.1.0",
     "typescript": "^3.2.1",
     "vndb": "^0.1.0"
   },

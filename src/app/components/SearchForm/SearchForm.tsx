@@ -4,7 +4,7 @@ import Button from '../_Generic/Button/Button';
 
 interface SearchFormProps {
     click: Function,
-    searchHandler: Function
+    searchObject: any
 }
 
 const SearchFormWrapper = styled.div`
@@ -29,7 +29,7 @@ export default class SearchForm extends React.Component<SearchFormProps> {
                     <Button click={
                         ()=> {
                                 this.props.click('Test')
-                                this.props.searchHandler('Test')
+                                this.props.searchObject.test('Test')
                             }
                         } primary>Search</Button>
                 </form>                
