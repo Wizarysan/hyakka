@@ -1,6 +1,6 @@
 const Jikan = (query: string, type?: string) => {
     const BASE = 'https://api.jikan.moe/v3',
-          SEARCH = '/search/anime?q=';
+          SEARCH = `/search/${type}?q=`;
 
     let call = BASE + SEARCH + query;
     let jikanPromise = fetch(call, { method: 'GET'})

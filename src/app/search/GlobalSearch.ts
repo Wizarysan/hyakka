@@ -8,20 +8,18 @@ export default class GlobalSearch {
         //this.promises = [];
     }
 
-    test(x: string) {
+    search(searchQuery: string) {
         //Promise chain
-        Jikan('Fate').then(data=> {            
+        return Jikan(searchQuery, 'anime').then(data=> {            
             this.aggregator.push(data.results)
-            console.log(this.aggregator)
+            //console.log(this.aggregator)
             return data.results;
-        }).then(data=>{
-            return Jikan('Witch')
+        }).then(()=>{
+            return Jikan(searchQuery, 'manga')
         }).then(data=> {            
             this.aggregator.push(data.results)
-            console.log(this.aggregator)
-            return data.results;
+            //console.log(this.aggregator)
+            return this.aggregator;
         })        
-
     }
-
 }

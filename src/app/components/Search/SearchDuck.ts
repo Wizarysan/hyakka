@@ -4,15 +4,15 @@ import {PayloadedAction, Action, createPayloadedAction, createAction} from './..
 
 //Actions
 interface SetSearch extends PayloadedAction<"app/SET_SEARCH", string> {}
-interface StartSearch extends PayloadedAction<"app/START_SEARCH", string> {}
+interface InitiatedSearch extends PayloadedAction<"app/INIT_SEARCH", string> {}
 interface SuccessSearch extends PayloadedAction<"app/SUCCESS_SEARCH", string> {}
 interface FailureSearch extends Action<"app/FAILURE_SEARCH"> {}
 
 //For several actions try:
-type SearchAction = SetSearch | StartSearch | SuccessSearch | FailureSearch;
+type SearchAction = SetSearch | InitiatedSearch | SuccessSearch | FailureSearch;
 
-//Reducer
-export default function reducer(state = initialState.search, action: SearchAction) {
+//Reducers
+export function searchReducer(state = initialState.search, action: SearchAction) {
   switch (action.type) {
     case "app/SET_SEARCH":      
       return action.payload;
@@ -21,10 +21,50 @@ export default function reducer(state = initialState.search, action: SearchActio
   }
 }
 
+export function resultsReducer(state = initialState.results, action: SearchAction) {
+  switch (action.type) {
+    case "app/INIT_SEARCH":      
+      return {
+        searching: true,
+        error: false
+      };
+    case "app/FAILURE_SEARCH":      
+      return {
+        searching: false,
+        error: true
+      };
+    case "app/SUCCESS_SEARCH":      
+      return {
+        searching: false,
+        error: false,
+        body: action.payload
+      };
+    default:
+      return state;
+  }
+}
+
+
 //Action Creators
-export const searchActions: Object = {
-    setSearch: createPayloadedAction<SetSearch>("app/SET_SEARCH"),
-    startSearch: createPayloadedAction<StartSearch>("app/START_SEARCH"),
+export const searchActions: any = {
+    setSearch: createPayloadedAction<SetSearch>("app/SET_SEARCH"),    
     SuccessSearch: createPayloadedAction<SuccessSearch>("app/SUCCESS_SEARCH"),
+    InitiatedSearch: createPayloadedAction<InitiatedSearch>("app/INIT_SEARCH"),
     FailureSearch: createAction<FailureSearch>("app/FAILURE_SEARCH"),
+    //Connecting to search interface promise chain with thunk:
+    startSearch: (searchObject: any, searchQuery: string) => {
+      console.log('starting search')
+      return (dispatch: Function) => {
+        dispatch(searchActions.InitiatedSearch());
+        searchObject.search(searchQuery).then(
+          (data: any)=> {
+            console.log(data)
+            dispatch(searchActions.SuccessSearch(data))
+          }, 
+          (error: any)=>{
+            console.error(error)
+            dispatch(searchActions.FailureSearch())
+          })
+      }
+    }
 }

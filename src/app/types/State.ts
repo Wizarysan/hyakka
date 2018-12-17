@@ -1,3 +1,4 @@
 export type State = {
-    search: string
+    search: string,
+    results: Array<any>
 }

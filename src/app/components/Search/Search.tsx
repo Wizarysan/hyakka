@@ -28,7 +28,7 @@ class Search extends React.Component<SearchProps> {
     render() {
         return (
             <SearchWrapper className="hyakka-search">
-                <SearchForm click={this.props.actions.setSearch} searchObject={this.state.globalSearch}/>
+                <SearchForm click={this.props.actions.startSearch} searchObject={this.state.globalSearch}/>
                 <div>{this.props.search}</div>
                 <CardsList cards={[]} />
             </SearchWrapper>

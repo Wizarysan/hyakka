@@ -28,8 +28,8 @@ export default class SearchForm extends React.Component<SearchFormProps> {
                     <SearchFormInput type="text" />
                     <Button click={
                         ()=> {
-                                this.props.click('Test')
-                                this.props.searchObject.test('Test')
+                                this.props.click(this.props.searchObject, 'Witch')
+                                //this.props.searchObject.test('Test')
                             }
                         } primary>Search</Button>
                 </form>                

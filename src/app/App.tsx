@@ -5,12 +5,13 @@ import { createStore } from 'redux'
 import rootReducer from './store/rootReducer';
 import Hyakka from './components/Hyakka/Hyakka';
 import initialState from './store/initialState';
+import configureStore from './store/configStore';
 //declare let module: any
 
-const store = createStore(rootReducer, initialState, 
-    (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
-    (window as any).__REDUX_DEVTOOLS_EXTENSION__() 
-)
+const store = configureStore(initialState);
+
+// (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
+// (window as any).__REDUX_DEVTOOLS_EXTENSION__()
 
 ReactDOM.render(
     <Provider store={store}>
