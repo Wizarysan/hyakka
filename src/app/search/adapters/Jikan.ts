@@ -3,15 +3,8 @@ const Jikan = (query: string, type?: string) => {
           SEARCH = `/search/${type}?q=`;
 
     let call = BASE + SEARCH + query;
-    let jikanPromise = fetch(call, { method: 'GET'})
+    return fetch(call, { method: 'GET'})
     .then(response=>response.json()) 
-    // .then(data=>{
-    //     //console.log(data);
-    //     return data.results;
-    // }) 
-    //.catch( console.error );
-
-    return jikanPromise;
 }
 
 export default Jikan;
