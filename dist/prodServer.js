@@ -23,15 +23,26 @@ app.all('/api/vndb', (req, res) => {
     })();    
 })
 
+app.all('/api/shiki', (req, res) => {
+  let shikimoriOptions = {
+    url: `https://shikimori.org/api/${req.query.type}?search=${req.query.search}&limit=50`,
+    headers: {
+      "User-Agent": "Hyakka"
+    }
+  }
+  request(shikimoriOptions, function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+      console.log(body)
+      return res.json(body);
+    }
+  });
+})
+
 app.get('*', (req, res) => {
    res.sendFile('index.html');
 });
 
-request('http://www.google.com', function (error, response, body) {
-  if (!error && response.statusCode == 200) {
-    //console.log(body) // Print the google web page.
-  }
-});
+
 
 app.listen(port, () => { console.log(`App is listening on port ${port}`) });
 opn('http://localhost:' + port);

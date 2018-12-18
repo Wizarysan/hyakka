@@ -1,10 +1,10 @@
 //https://shikimori.org/api/ranobe?search=Umineko&limit=50
 const Shikimori = (query: string, type?: string) => {
-    const BASE = 'https://shikimori.org/api/',
-          SEARCH = `${type}?search=${query}&limit=50`;
+    const BASE = '/api/shiki',
+          SEARCH = `?search=${query}&type=${type}&limit=50`;
 
     let call = BASE + SEARCH;
-    return fetch(call, { method: 'GET'})
+    return fetch(call)
     .then(response=>response.json())
     .then(data=> {
         console.log(data)
