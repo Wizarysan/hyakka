@@ -21,14 +21,22 @@ const SearchFormInput = styled.input`
 `
 
 export default class SearchForm extends React.Component<SearchFormProps> {
+    state = {
+        searchQuery: ''
+    }
+
+    handleInput = (e: React.FormEvent<HTMLInputElement>) => {
+        this.setState({searchQuery: e.currentTarget.value})
+    }
+
     render() {
         return (
             <SearchFormWrapper className="hyakka-search-form">
                 <form>
-                    <SearchFormInput type="text" />
+                    <SearchFormInput type="text" value={this.state.searchQuery} onChange={this.handleInput} />
                     <Button click={
                         ()=> {
-                                this.props.click(this.props.searchObject, 'Witch')
+                                this.props.click(this.props.searchObject, this.state.searchQuery)
                                 //this.props.searchObject.test('Test')
                             }
                         } primary>Search</Button>
