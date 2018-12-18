@@ -1,4 +1,8 @@
 export default {
     search: '123',
-    results: []
+    results: {
+        loading: false,
+        error: false,
+        body: []
+    }
 }

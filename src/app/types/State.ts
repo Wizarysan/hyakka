@@ -1,4 +1,8 @@
 export type State = {
     search: string,
-    results: Array<any>
+    results: {
+        loading: boolean,
+        error: boolean,
+        body: Array<any>
+    }
 }

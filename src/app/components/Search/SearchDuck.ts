@@ -25,17 +25,19 @@ export function resultsReducer(state = initialState.results, action: SearchActio
   switch (action.type) {
     case "app/INIT_SEARCH":      
       return {
-        searching: true,
+        ...state,
+        loading: true,
         error: false
       };
     case "app/FAILURE_SEARCH":      
       return {
-        searching: false,
+        ...state,
+        loading: false,
         error: true
       };
     case "app/SUCCESS_SEARCH":      
       return {
-        searching: false,
+        loading: false,
         error: false,
         body: action.payload
       };
