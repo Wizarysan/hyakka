@@ -1,4 +1,5 @@
 import Jikan from "./adapters/Jikan";
+import Vndb from "./adapters/Vndb";
 
 interface Aggregator {
     anime?: Array<any>,
@@ -25,7 +26,12 @@ export default class GlobalSearch {
             return Jikan(searchQuery, 'manga')
         }).then(data=> {            
             this.aggregator.manga = data;
-            return this.aggregator;
-        })        
+            return Vndb(searchQuery).then(
+                data=> {
+                    this.aggregator.vn = data; 
+                    return this.aggregator;
+                }
+            )
+        })         
     }
 }

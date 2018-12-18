@@ -1,4 +1,4 @@
-const Vndb = (query: string, type?: string) => {
+const Vndb = (query: string) => {
     const BASE = '/api/vndb',
           SEARCH = `?q=${query}&page=`;
 
@@ -6,26 +6,29 @@ const Vndb = (query: string, type?: string) => {
     return fetch(call+'1', { method: 'GET'})
     .then(response=>response.json())
     .then(data=> {
-        // let results = data.results.items.map((item: any) => {
-        //     let ongoing;
-        //     item.airing!=null ? ongoing = item.airing : ongoing = item.publishing;
-        //     item.start_date ? item.start_date = item.start_date.substring(0,4) : item.start_date = '';
-        //     return {
-        //             id: item.mal_id,
-        //             name: item.title,
-        //             type: type,
-        //             format: item.type,
-        //             cover: item.image_url,
-        //             synopsis: item.synopsis,
-        //             by: '',
-        //             year: item.start_date,
-        //             genres: '',
-        //             ratings: item.score,
-        //             tags: '',
-        //             ongoing: ongoing,
-        //             url: item.url
-        //         }
-        //     });
-        return data.results.items
+        data = JSON.parse(data)
+        console.log(data)
+        console.log(data.items)
+        let results = data["items"].map((item: any) => {
+            item.released ? item.released = item.released.substring(0,4) : item.released = '';
+            return {
+                    id: item.id,
+                    name: item.title,
+                    type: "Visual novel",
+                    format: "Game",
+                    cover: item.image,
+                    synopsis: item.description,
+                    by: '',
+                    year: item.released,
+                    genres: '',
+                    ratings: item.rating,
+                    tags: '',
+                    ongoing: '',
+                    url: 'https://vndb.org/v'+item.id
+                }
+            });
+        return results
     }) 
 }
+
+export default Vndb;
