@@ -1,8 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
-import rootReducer from './store/rootReducer';
 import Hyakka from './components/Hyakka/Hyakka';
 import initialState from './store/initialState';
 import configureStore from './store/configStore';
