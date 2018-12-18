@@ -14,7 +14,7 @@ app.all('/api/vndb', (req, res) => {
       try {
           const vndb = await VNDB.start();
           const res0 = await vndb.write('login {"protocol":1,"client":"VNDB-Reborn-Tester","clientver":"0.0.1"}');
-          const res2 = await vndb.write('get vn basic,details,tags (search ~ "witch")');
+          const res2 = await vndb.write('get vn basic,details,tags (search ~ "'+req.query.q+'") {"results": 25, "page": '+req.query.page+'}');
           res.json(res2);
           await vndb.end();          
       } catch (e) {

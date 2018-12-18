@@ -2,7 +2,8 @@ import Jikan from "./adapters/Jikan";
 
 interface Aggregator {
     anime?: Array<any>,
-    manga?: Array<any>
+    manga?: Array<any>,
+    vn?: Array<any>,
 }
 
 export default class GlobalSearch {
@@ -10,7 +11,8 @@ export default class GlobalSearch {
     constructor() {
         this.aggregator = {
             anime: [],
-            manga: []
+            manga: [],
+            vn: [],
         };
     }
 
