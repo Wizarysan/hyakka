@@ -41,6 +41,10 @@ const CardsList: React.SFC<CardsListProps> = props => {
         return (
             <CardsListWrapper className="hyakka-card-list">
                 {output}
+                <Card image="https://cdn.myanimelist.net/images/anime/10/17709.jpg?s=ff7ce7f225142feb457786d8374d2c79"
+                name="Test name test name test name"
+                type="anime"
+                year="2007" />
             </CardsListWrapper>
         ) 
 }
