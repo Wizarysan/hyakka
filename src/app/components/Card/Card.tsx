@@ -4,10 +4,16 @@ import styled from 'styled-components';
 
 interface CardProps {
     image: string;
+    name: string;
+    year: string;
+    type: string;
 }
 
 const CardWrapper = styled.div`
+    display: inline-block;
+    vertical-align: top;
     width: 200px;
+    height: 300px;
     padding: 5px;
     transition: all .2s;
     &:hover {
@@ -27,12 +33,15 @@ const StyledLink = styled(Link)`
     text-decoration: none;
 `
 
-const Card: React.SFC<CardProps> = (props) => {
+const Card: React.SFC<CardProps> = props => {
+    const { image, name, year, type} = props
     return (
         <CardWrapper className="hyakka-card">
             <StyledLink to="/fullcard">
-                <CardCover src={props.image} />
-                <CardTitle>Test title</CardTitle>
+                <CardCover src={image} />
+                <CardTitle>{name}</CardTitle>
+                <CardTitle>{type}</CardTitle>
+                <CardTitle>{year}</CardTitle>
             </StyledLink>
         </CardWrapper>
     );

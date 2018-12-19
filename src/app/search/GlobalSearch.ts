@@ -20,6 +20,8 @@ export default class GlobalSearch {
         };
     }
 
+    //TODO test and maybe refactor to separate promises with flags or Promise.all
+    //Mal cannot parse Russian characters, need to search Shiki for russian titles
     search(searchQuery: string) {
         //Promise chain
         return Jikan(searchQuery, 'anime').then(data=> {            
@@ -29,16 +31,15 @@ export default class GlobalSearch {
             return Jikan(searchQuery, 'manga')
         }).then(data=> {            
             this.aggregator.manga = data;
-            // return Vndb(searchQuery).then(
-            //     data=> {
-            //         this.aggregator.vn = data; 
-            //         return this.aggregator;
-            //     }
-            // )
             return Shikimori(searchQuery, 'ranobe')
             .then(data=> {
                 this.aggregator.ranobe = data;
-                return this.aggregator;
+                return Vndb(searchQuery).then(
+                    data=> {
+                        this.aggregator.vn = data; 
+                        return this.aggregator;
+                    }
+                )                
             })            
         })         
     }

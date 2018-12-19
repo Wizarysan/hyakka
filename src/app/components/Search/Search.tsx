@@ -13,6 +13,11 @@ import {searchActions} from './SearchDuck';
 
 interface SearchProps {
     search: string,
+    results: {        
+        loading: boolean,
+        error: boolean,
+        body: Array<any>
+    },
     actions: any
 }
 
@@ -28,9 +33,8 @@ class Search extends React.Component<SearchProps> {
     render() {
         return (
             <SearchWrapper className="hyakka-search">
-                <SearchForm click={this.props.actions.startSearch} searchObject={this.state.globalSearch}/>
-                <div>{this.props.search}</div>
-                <CardsList cards={[]} />
+                <SearchForm click={this.props.actions.startSearch} searchObject={this.state.globalSearch}/>                
+                <CardsList results={this.props.results} />
             </SearchWrapper>
         )        
     }
@@ -38,7 +42,8 @@ class Search extends React.Component<SearchProps> {
 
 function mapStateToProps(state: State) {
     return {
-      search: state.search
+      search: state.search,
+      results: state.results
     };
   }
   

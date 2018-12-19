@@ -1,3 +1,5 @@
+//https://jikan.docs.apiary.io
+
 const Jikan = (query: string, type?: string) => {
     const BASE = 'https://api.jikan.moe/v3',
           SEARCH = `/search/${type}?q=`;

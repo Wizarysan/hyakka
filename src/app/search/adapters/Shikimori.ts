@@ -16,7 +16,7 @@ const Shikimori = (query: string, type?: string) => {
                     name: item.name,
                     type: type,
                     format: item.kind,
-                    cover: item.original,
+                    cover: 'https://shikimori.org' + item.image.original,
                     synopsis: '',
                     by: '',
                     year: item.aired_on,
