@@ -2,6 +2,7 @@ const path = require('path'),
     webpack = require('webpack'),
     HtmlWebpackPlugin = require('html-webpack-plugin');
 
+    //TODO I had to change TS target to es6 to use Promise.all, need to use babel now to get ES5 in the end
 module.exports = {
     entry: {
         app: ['./src/app/App.tsx'],
