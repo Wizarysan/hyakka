@@ -38,8 +38,10 @@ const CardYear = styled.p`
     position: absolute;
     opacity: 0;
     top: 15px;
-    margin:0;
     left: 15px;
+    margin:0;    
+    padding: 0 5px; 
+    background: #3692a4;   
     color: white;    
     font-size: 1.3em;
     transition: opacity .2s;
