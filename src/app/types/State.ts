@@ -6,6 +6,6 @@ export type State = {
         body: Array<any>
     },
     filters: {
-        name: string
+        name: boolean
     }
 }

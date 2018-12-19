@@ -1,11 +1,11 @@
 export default {
-    search: '123',
+    search: '',
     results: {
         loading: false,
         error: false,
         body: []
     },
     filters: {
-        name: ''
+        name: false
     }
 }

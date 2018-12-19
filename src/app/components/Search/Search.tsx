@@ -19,7 +19,7 @@ interface SearchProps {
         body: Array<any>
     },
     filters: {
-        name: string
+        name: boolean
     }
     actions: any
 }
@@ -37,7 +37,7 @@ class Search extends React.Component<SearchProps> {
         return (
             <SearchWrapper className="hyakka-search">
                 <SearchForm click={this.props.actions.startSearch} searchObject={this.state.globalSearch}/>                
-                <CardsList results={this.props.results} filters={this.props.filters}/>
+            <CardsList results={this.props.results} filters={this.props.filters} searchQuery={this.props.search}/>
             </SearchWrapper>
         )        
     }

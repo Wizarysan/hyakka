@@ -39,8 +39,12 @@ export default class SearchForm extends React.Component<SearchFormProps> {
                                 this.props.click(this.props.searchObject, this.state.searchQuery)
                                 //this.props.searchObject.test('Test')
                             }
-                        } primary>Search</Button>
-                </form>                
+                        } primary>Search</Button>                        
+                </form> 
+                <div className="hyakka-options">
+                    <input type="checkbox" name="strict"/>
+                    <label htmlFor="strict">Strict search</label>
+                </div>               
             </SearchFormWrapper>
         )        
     }

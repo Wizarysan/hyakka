@@ -8,8 +8,9 @@ interface CardsListProps {
         error: boolean,
         body: Array<any>
     },
+    searchQuery: string,
     filters: {
-        name: string
+        name: boolean
     }
 }
 
@@ -25,6 +26,7 @@ const filterByString = (target: Array<any>, filter: string, query: string) => {
 const CardsList: React.SFC<CardsListProps> = props => {
         const {loading, error, body} = props.results;
         const filters = props.filters;
+        const searchQuery = props.searchQuery;
         let output;
         if(loading) {
             output = <div>Loading...</div>
@@ -34,8 +36,8 @@ const CardsList: React.SFC<CardsListProps> = props => {
             let categories = [];
             for (let category in body) {
                 let cards = body[category];
-                if(filters.name !== '') {
-                    cards = filterByString(body[category], 'name', filters.name)
+                if(filters.name) {
+                    cards = filterByString(body[category], 'name', searchQuery)
                 }
                 cards = cards.map((item: any, index: number) => {
                     return <Card 
