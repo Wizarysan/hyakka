@@ -7,8 +7,6 @@ const Vndb = (query: string) => {
     .then(response=>response.json())
     .then(data=> {
         data = JSON.parse(data)
-        console.log(data)
-        console.log(data.items)
         let results = data["items"].map((item: any) => {
             item.released ? item.released = item.released.substring(0,4) : item.released = '';
             return {
