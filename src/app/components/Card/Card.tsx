@@ -14,7 +14,7 @@ const CardWrapper = styled.div`
     display: inline-block;
     vertical-align: top;
     width: 200px;
-    height: 320px;
+    min-height: 320px;
     margin: 0 10px 40px 10px;
     padding: 8px;
     background: white;
@@ -40,7 +40,7 @@ const CardYear = styled.p`
     top: 15px;
     left: 15px;
     margin:0;    
-    padding: 0 5px; 
+    padding: 0 7px; 
     background: #3692a4;   
     color: white;    
     font-size: 1.3em;
@@ -52,6 +52,8 @@ const CardType = styled.p`
     top: 15px;
     margin:0;
     right: 15px;
+    padding: 0 7px; 
+    background: #3692a4;  
     color: white;    
     font-size: 1.3em;
     transition: opacity .2s;

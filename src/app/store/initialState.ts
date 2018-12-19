@@ -4,5 +4,8 @@ export default {
         loading: false,
         error: false,
         body: []
+    },
+    filters: {
+        name: ''
     }
 }

@@ -7,24 +7,37 @@ interface CardsListProps {
         loading: boolean,
         error: boolean,
         body: Array<any>
-    };
+    },
+    filters: {
+        name: string
+    }
 }
 
 const CardsListWrapper = styled.div`
     padding: 30px 10px;
 `
+const filterByString = (target: Array<any>, filter: string, query: string) => {
+    return target.filter((item: any)=>{
+        return item[filter].toLowerCase().contains(query.toLowerCase())
+    })
+}
 
 const CardsList: React.SFC<CardsListProps> = props => {
         const {loading, error, body} = props.results;
+        const filters = props.filters;
         let output;
         if(loading) {
-            output = <div>Loading</div>
+            output = <div>Loading...</div>
         } else if(error) {
             output = <div>Something gone wrong during search</div>
         } else {
             let categories = [];
             for (let category in body) {
-                let cards = body[category].map((item: any, index: number) => {
+                let cards = body[category];
+                if(filters.name !== '') {
+                    cards = filterByString(body[category], 'name', filters.name)
+                }
+                cards = cards.map((item: any, index: number) => {
                     return <Card 
                                 key={`${item.id}_${index}`} 
                                 image={item.cover}

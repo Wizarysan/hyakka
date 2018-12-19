@@ -18,6 +18,9 @@ interface SearchProps {
         error: boolean,
         body: Array<any>
     },
+    filters: {
+        name: string
+    }
     actions: any
 }
 
@@ -34,7 +37,7 @@ class Search extends React.Component<SearchProps> {
         return (
             <SearchWrapper className="hyakka-search">
                 <SearchForm click={this.props.actions.startSearch} searchObject={this.state.globalSearch}/>                
-                <CardsList results={this.props.results} />
+                <CardsList results={this.props.results} filters={this.props.filters}/>
             </SearchWrapper>
         )        
     }
@@ -43,7 +46,8 @@ class Search extends React.Component<SearchProps> {
 function mapStateToProps(state: State) {
     return {
       search: state.search,
-      results: state.results
+      results: state.results,
+      filters: state.filters
     };
   }
   

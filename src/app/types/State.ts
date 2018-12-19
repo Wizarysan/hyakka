@@ -4,5 +4,8 @@ export type State = {
         loading: boolean,
         error: boolean,
         body: Array<any>
+    },
+    filters: {
+        name: string
     }
 }
