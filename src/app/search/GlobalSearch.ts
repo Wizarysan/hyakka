@@ -24,23 +24,54 @@ export default class GlobalSearch {
     //Mal cannot parse Russian characters, need to search Shiki for russian titles
     search(searchQuery: string) {
         //Promise chain
-        return Jikan(searchQuery, 'anime').then(data=> {            
+        let promises = [];
+        
+        promises.push(Jikan(searchQuery, 'anime').then(data=> {            
             this.aggregator.anime = data;
             return data;
-        }).then(()=>{
-            return Jikan(searchQuery, 'manga')
-        }).then(data=> {            
+        }).catch((err)=>{
+            console.error(err); return []
+        }))
+        promises.push(Jikan(searchQuery, 'manga').then(data=> {            
             this.aggregator.manga = data;
-            return Shikimori(searchQuery, 'ranobe')
-            .then(data=> {
-                this.aggregator.ranobe = data;
-                return Vndb(searchQuery).then(
-                    data=> {
-                        this.aggregator.vn = data; 
-                        return this.aggregator;
-                    }
-                )                
-            })            
-        })         
+            return data;
+        }).catch((err)=>{
+            console.error(err); return []
+        }))
+        promises.push(Shikimori(searchQuery, 'ranobe').then(data=> {            
+            this.aggregator.ranobe = data;
+            return data;
+        }).catch((err)=>{
+            console.error(err); return []
+        }))
+        promises.push(Vndb(searchQuery).then(data=> {            
+            this.aggregator.vn = data;
+            return data;
+        }).catch((err)=>{
+            console.error(err); return []
+        }))
+
+        return Promise.all(promises).then(data=> {
+            return this.aggregator;
+        })
+
+        // return Jikan(searchQuery, 'anime').then(data=> {            
+        //     this.aggregator.anime = data;
+        //     return data;
+        // }).then(()=>{
+        //     return Jikan(searchQuery, 'manga')
+        // }).then(data=> {            
+        //     this.aggregator.manga = data;
+        //     return Shikimori(searchQuery, 'ranobe')
+        //     .then(data=> {
+        //         this.aggregator.ranobe = data;
+        //         return Vndb(searchQuery).then(
+        //             data=> {
+        //                 this.aggregator.vn = data; 
+        //                 return this.aggregator;
+        //             }
+        //         )                
+        //     })            
+        // })         
     }
 }
