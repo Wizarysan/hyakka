@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Card from '../Card/Card';
 import styled from 'styled-components';
+import { filterByString } from '../../helpers/helpers';
 
 interface CardsListProps {
     results: {        
@@ -17,12 +18,6 @@ interface CardsListProps {
 const CardsListWrapper = styled.div`
     padding: 30px 10px;
 `
-const filterByString = (target: Array<any>, filter: string, query: string) => {
-    return target.filter((item: any)=>{
-        return item[filter].toLowerCase().includes(query.toLowerCase())
-    })
-}
-
 const CardsList: React.SFC<CardsListProps> = props => {
         const {loading, error, body} = props.results;
         const filters = props.filters;
@@ -31,15 +26,13 @@ const CardsList: React.SFC<CardsListProps> = props => {
         if(loading) {
             output = <div>Loading...</div>
         } else if(error) {
-            output = <div>Something gone wrong during search</div>
+            output = <div>Something went wrong. Try again!</div>
         } else {
             let categories = [];
             for (let category in body) {
                 let cards = body[category];
                 if(filters.name) {
                     cards = filterByString(body[category], 'name', searchQuery)
-                    console.log(searchQuery)
-                    console.log(cards)
                 }
                 cards = cards.map((item: any, index: number) => {
                     return <Card 
@@ -57,11 +50,7 @@ const CardsList: React.SFC<CardsListProps> = props => {
         }      
         return (
             <CardsListWrapper className="hyakka-card-list">
-                {output}
-                <Card image="https://cdn.myanimelist.net/images/anime/10/17709.jpg?s=ff7ce7f225142feb457786d8374d2c79"
-                name="Test name test name test name"
-                type="anime"
-                year="2007" />
+                {output}                
             </CardsListWrapper>
         ) 
 }

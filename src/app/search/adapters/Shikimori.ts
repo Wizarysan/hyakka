@@ -8,7 +8,6 @@ const Shikimori = (query: string, type?: string) => {
     .then(response=>response.json())
     .then(data=> {
         data = JSON.parse(data)
-        console.log(data)
         let results = data.map((item: any) => {
             item.aired_on ? item.aired_on = item.aired_on.substring(0,4) : item.aired_on = '';
             return {

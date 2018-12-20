@@ -33,6 +33,7 @@ const CardCover = styled.img`
 const CardTitle = styled.p`
     font-size: 1.2em;
     margin: 5px 0;
+    white-space: nowrap;
 `;
 const CardYear = styled.p`
     position: absolute;
@@ -64,12 +65,13 @@ const StyledLink = styled(Link)`
 `
 
 const Card: React.SFC<CardProps> = props => {
-    const { image, name, year, type} = props
+    const { image, name, year, type} = props;
+    let ellipsis = name.length < 20 ? '' : '...';    
     return (
         <CardWrapper className="hyakka-card">
             <StyledLink to="/fullcard">
                 <CardCover src={image} />
-                <CardTitle>{name.substr(0, 15) + '...'}</CardTitle>
+                <CardTitle>{name.substr(0, 20) + ellipsis}</CardTitle>
                 <CardType className="hyakka-card-additional">{type}</CardType>
                 <CardYear className="hyakka-card-additional">{year}</CardYear>
             </StyledLink>
