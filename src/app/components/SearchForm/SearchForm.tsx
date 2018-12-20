@@ -2,9 +2,19 @@ import * as React from 'react';
 import styled from 'styled-components';
 import Button from '../_Generic/Button/Button';
 
+import { bindActionCreators } from 'redux';
+import {connect} from 'react-redux';
+import {State} from './../../types/State';
+import {filterActions} from './FilterDuck';
+
 interface SearchFormProps {
-    click: Function,
-    searchObject: any
+    click: (a: object, b: string)=>void,
+    setSearch: (a: string)=>void,
+    searchObject: object,
+    filters: {
+        name: boolean
+    },
+    actions: any
 }
 
 const SearchFormWrapper = styled.div`
@@ -20,7 +30,7 @@ const SearchFormInput = styled.input`
     }
 `
 
-export default class SearchForm extends React.Component<SearchFormProps> {
+class SearchForm extends React.Component<SearchFormProps> {
     state = {
         searchQuery: ''
     }
@@ -36,16 +46,35 @@ export default class SearchForm extends React.Component<SearchFormProps> {
                     <SearchFormInput type="text" value={this.state.searchQuery} onChange={this.handleInput} />
                     <Button click={
                         ()=> {
-                                this.props.click(this.props.searchObject, this.state.searchQuery)
-                                //this.props.searchObject.test('Test')
+                                this.props.setSearch(this.state.searchQuery)
+                                this.props.click(this.props.searchObject, this.state.searchQuery)                                
                             }
                         } primary>Search</Button>                        
                 </form> 
                 <div className="hyakka-options">
-                    <input type="checkbox" name="strict"/>
+                    <input type="checkbox" name="strict" onChange={
+                        (e) => {
+                            e.target.checked ? this.props.actions.filterNameOn() : this.props.actions.filterNameOff()
+                        }
+                    }/>
                     <label htmlFor="strict">Strict search</label>
                 </div>               
             </SearchFormWrapper>
         )        
     }
 }
+
+function mapStateToProps(state: State) {
+    return {
+      filters: state.filters
+    };
+  }
+  
+  function mapDispatchToProps(dispatch: any) {
+    return {
+      actions: bindActionCreators<any, any>(filterActions, dispatch)
+    }
+  }
+  
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchForm);

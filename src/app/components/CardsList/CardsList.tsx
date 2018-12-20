@@ -19,7 +19,7 @@ const CardsListWrapper = styled.div`
 `
 const filterByString = (target: Array<any>, filter: string, query: string) => {
     return target.filter((item: any)=>{
-        return item[filter].toLowerCase().contains(query.toLowerCase())
+        return item[filter].toLowerCase().includes(query.toLowerCase())
     })
 }
 
@@ -38,6 +38,8 @@ const CardsList: React.SFC<CardsListProps> = props => {
                 let cards = body[category];
                 if(filters.name) {
                     cards = filterByString(body[category], 'name', searchQuery)
+                    console.log(searchQuery)
+                    console.log(cards)
                 }
                 cards = cards.map((item: any, index: number) => {
                     return <Card 
@@ -48,7 +50,7 @@ const CardsList: React.SFC<CardsListProps> = props => {
                                 year={item.year}
                                 />
                 })
-                categories.push(<h3 className="capitalize">{category}</h3>)
+                categories.push(<h3 key={`cat_${category}`} className="capitalize">{category}</h3>)
                 categories.push(cards)
             }
             output = <div>{categories}</div>
