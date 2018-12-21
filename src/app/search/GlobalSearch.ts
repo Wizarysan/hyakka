@@ -3,6 +3,7 @@ import Vndb from "./adapters/Vndb";
 import Shikimori from "./adapters/Shikimori";
 
 interface Aggregator {
+    [key:string]: any,
     anime?: Array<any>,
     manga?: Array<any>,
     ranobe?: Array<any>,
@@ -12,7 +13,7 @@ interface Aggregator {
 export default class GlobalSearch {
     aggregator: Aggregator;
     constructor() {
-        this.aggregator = {
+        this.aggregator = {            
             anime: [],
             manga: [],
             ranobe: [],
@@ -51,7 +52,18 @@ export default class GlobalSearch {
             console.error(err); return []
         }))
 
-        return Promise.all(promises).then(data=> {
+        return Promise.all(promises).then(data=> { 
+            let ownIdIndex = 0;
+            for(let category in this.aggregator) {
+                this.aggregator[category] = this.aggregator[category].map((item: any)=> {
+                        ownIdIndex++
+                        return {
+                            ...item,
+                            ownId: ownIdIndex
+                        }
+                    } 
+                )
+            }           
             return this.aggregator;
         }).catch((err)=> console.error('Something gone wrong in Promise.all'))
             
