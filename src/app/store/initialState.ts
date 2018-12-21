@@ -7,5 +7,6 @@ export default {
     },
     filters: {
         name: false
-    }
+    },
+    currentCard: {}
 }
