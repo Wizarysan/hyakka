@@ -41,6 +41,7 @@ const CardsList: React.SFC<CardsListProps> = props => {
                                 name={item.name}
                                 type={item.type}
                                 year={item.year}
+                                cardId={item.ownId}
                                 />
                 })
                 categories.push(<h3 key={`cat_${category}`} className="capitalize">{category}</h3>)

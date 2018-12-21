@@ -9,6 +9,8 @@ export type State = {
         name: boolean
     },
     currentCard: {
+        [key:string]: any,
+        ownId: string,
         id: string,
         name: string,
         type: string,

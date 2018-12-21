@@ -8,5 +8,20 @@ export default {
     filters: {
         name: false
     },
-    currentCard: {}
+    currentCard: {
+        id: '',
+        ownId: '',
+        name: '',
+        type: '',
+        format: '',
+        cover: '',
+        synopsis: '',
+        by: '',
+        year: '',
+        genres: [],
+        ratings: '',
+        tags: '',
+        ongoing: '',
+        url: ''
+    }
 }

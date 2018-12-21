@@ -7,6 +7,7 @@ interface CardProps {
     name: string;
     year: string;
     type: string;
+    cardId: string;
 }
 
 const CardWrapper = styled.div`
@@ -65,12 +66,12 @@ const StyledLink = styled(Link)`
 `
 
 const Card: React.SFC<CardProps> = props => {
-    const { image, name, year, type} = props;
+    const { image, name, year, type, cardId} = props;
     let ellipsis = name.length < 20 ? '' : '...';    
     return (
         <CardWrapper className="hyakka-card">
-            <StyledLink to="/fullcard">
-                <CardCover src={image} />
+            <StyledLink to={`/fullcard/${cardId}`} >
+                <CardCover src={image}/>
                 <CardTitle>{name.substr(0, 20) + ellipsis}</CardTitle>
                 <CardType className="hyakka-card-additional">{type}</CardType>
                 <CardYear className="hyakka-card-additional">{year}</CardYear>

@@ -17,7 +17,7 @@ export default class Hyakka extends React.Component {
                 <Router>
                     <React.Fragment>
                         <Route path="/" exact component={Search} />
-                        <Route path="/fullcard/" component={CardFull} />   
+                        <Route path="/fullcard/:ownId?" component={CardFull} />   
                     </React.Fragment>                  
                 </Router>
                 <GlobalStyle />
