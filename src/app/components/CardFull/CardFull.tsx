@@ -26,11 +26,20 @@ class CardFull extends React.Component<FullCardProps> {
     }
     
     render() {
-        const full = this.props.fullCard;
+        const {name, cover, type, format, synopsis, by, year, genres, ratings, tags, ongoing, url} = this.props.fullCard;
         return (
             <div className="hyakka-card-full">
-                <h1>{full.name}</h1>
-                <img src={full.cover} alt=""/>
+                <h1>{name}</h1>
+                <img src={cover} alt=""/>
+                <div>
+                    <span>{type}</span>
+                    <span>{format}</span>
+                    <span>{year}</span>
+                    <span>{ongoing}</span>
+                    <p>{ratings}</p>
+                    <p>{synopsis}</p>
+                    <p><a href={url} target="_blank">More</a></p>
+                </div>
             </div>
         )        
     }
