@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import styled from 'styled-components';
 
 import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
@@ -12,6 +12,28 @@ interface FullCardProps {
     actions: any,
     fullCard: any  
 }
+
+const FullWrapper = styled.div`
+    padding: 0 30px;
+    font-size: 1.2em;
+`
+const FullCover = styled.img`
+    max-width: 40%;
+    display: inline-block;
+`
+const FullData = styled.div`
+    max-width: 59%;
+    display: inline-block;    
+    vertical-align: top;
+    padding: 0 40px;
+    & p {
+        margin: 0 0 15px 0;
+    }
+`
+const FullOngoing = styled("p")<{ongoing: boolean}>`
+   font-size: 1.3em;
+   color: ${(props: any) => props.ongoing ? "#328697" : "#4caf50"};
+`
 
 class CardFull extends React.Component<FullCardProps> {
     componentDidMount() {
@@ -28,19 +50,19 @@ class CardFull extends React.Component<FullCardProps> {
     render() {
         const {name, cover, type, format, synopsis, by, year, genres, ratings, tags, ongoing, url} = this.props.fullCard;
         return (
-            <div className="hyakka-card-full">
+            <FullWrapper className="hyakka-card-full">
                 <h1>{name}</h1>
-                <img src={cover} alt=""/>
-                <div>
-                    <span>{type}</span>
-                    <span>{format}</span>
-                    <span>{year}</span>
-                    <span>{ongoing}</span>
-                    <p>{ratings}</p>
-                    <p>{synopsis}</p>
-                    <p><a href={url} target="_blank">More</a></p>
-                </div>
-            </div>
+                <FullCover src={cover} alt=""/>
+                <FullData>
+                    <FullOngoing ongoing={ongoing}><b>{ongoing ? 'Ongoing' : 'Complete'}</b></FullOngoing>
+                    <p><b>Type:</b> {type}</p>
+                    <p><b>Format:</b> {format}</p>
+                    <p><b>Year:</b> {year}</p>                    
+                    <p><b>Native rating:</b> {ratings}</p>
+                </FullData>
+                <p>{synopsis}</p>
+                <p><a href={url} target="_blank">More</a></p>
+            </FullWrapper>
         )        
     }
 }
