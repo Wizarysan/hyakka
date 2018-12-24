@@ -6,7 +6,7 @@ export default {
         body: []
     },
     filters: {
-        name: false
+        name: true
     },
     currentCard: {
         id: '',

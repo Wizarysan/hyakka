@@ -52,7 +52,7 @@ class SearchForm extends React.Component<SearchFormProps> {
                         } primary>Search</Button>                        
                 </form> 
                 <div className="hyakka-options">
-                    <input type="checkbox" name="strict" onChange={
+                    <input type="checkbox" name="strict" checked={this.props.filters.name} onChange={
                         (e) => {
                             e.target.checked ? this.props.actions.filterNameOn() : this.props.actions.filterNameOff()
                         }
