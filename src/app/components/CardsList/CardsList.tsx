@@ -17,6 +17,14 @@ interface CardsListProps {
 
 const CardsListWrapper = styled.div`
     padding: 30px 10px;
+    & .category {
+        background: #44d1ec;        
+        background: linear-gradient(to right,#44d1ec 0%,#be87f6 100%);
+        font-size: 2em;
+        color: #ffffff;
+        padding: 5px 17px;
+        text-shadow: 1px 1px 1px #000;
+    }
 `
 const CardsList: React.SFC<CardsListProps> = props => {
         const {loading, error, body} = props.results;
@@ -44,7 +52,7 @@ const CardsList: React.SFC<CardsListProps> = props => {
                                 cardId={item.ownId}
                                 />
                 })
-                categories.push(<h3 key={`cat_${category}`} className="capitalize">{category}</h3>)
+                categories.push(<h3 key={`cat_${category}`} className="category">{category}</h3>)
                 categories.push(cards)
             }
             output = <div>{categories}</div>
