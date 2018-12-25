@@ -30,9 +30,8 @@ const FullData = styled.div`
         margin: 0 0 15px 0;
     }
 `
-const FullOngoing = styled("p")<{ongoing: boolean}>`
+const FullOngoing = styled.p`
    font-size: 1.3em;
-   color: ${(props: any) => props.ongoing ? "#328697" : "#4caf50"};
 `
 
 class CardFull extends React.Component<FullCardProps> {
@@ -54,7 +53,7 @@ class CardFull extends React.Component<FullCardProps> {
                 <h1>{name}</h1>
                 <FullCover src={cover} alt=""/>
                 <FullData>
-                    <FullOngoing ongoing={ongoing}><b>{ongoing ? 'Ongoing' : 'Complete'}</b></FullOngoing>
+                    <FullOngoing className={ongoing ? 'text-teal' : 'text-green'}><b>{ongoing ? 'Ongoing' : 'Complete'}</b></FullOngoing>
                     <p><b>Type:</b> {type}</p>
                     <p><b>Format:</b> {format}</p>
                     <p><b>Year:</b> {year}</p>                    

@@ -9,6 +9,12 @@ const GlobalStyle = createGlobalStyle`
     body {
         font-family: 'Source Sans Pro', sans-serif;
     }
+    .text-teal {
+        color: #328697;
+    }
+    .text-green {
+        color: #4caf50;
+    }
 `
 export default class Hyakka extends React.Component {
     render() {
