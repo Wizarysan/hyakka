@@ -11,6 +11,7 @@ const Jikan = (query: string, type?: string, id?: string) => {
         return fetch(call, { method: 'GET'})
         .then(response=>response.json())
         .then(data=> {
+            console.log('Jikan, ', data)
             let results = data.results.map((item: any) => {
                 let ongoing;
                 item.airing!=null ? ongoing = item.airing : ongoing = item.publishing;
@@ -32,6 +33,9 @@ const Jikan = (query: string, type?: string, id?: string) => {
                     }
                 });
             return results
+        }).catch(err=> {
+            console.error('Jikan api error');
+            return err;
         }) 
     }
 }
