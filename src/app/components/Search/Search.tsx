@@ -3,13 +3,12 @@ import * as React from 'react';
 import styled from 'styled-components';
 import CardsList from '../CardsList/CardsList';
 import SearchForm from '../SearchForm/SearchForm';
-import GlobalSearch from '../../search/GlobalSearch';
+import GlobalSearch from '../../search/globalSearch';
 
 import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
 import {State} from './../../types/State';
 import {searchActions} from './SearchDuck';
-
 
 interface SearchProps {
     search: string,

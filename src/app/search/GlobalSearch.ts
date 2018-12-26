@@ -65,7 +65,7 @@ export default class GlobalSearch {
                 )
             }           
             return this.aggregator;
-        }).catch((err)=> console.error('Something gone wrong in Promise.all'))
+        }).catch((err)=> console.error('Something gone wrong in Promise.all: ', err))
             
     }
 }
