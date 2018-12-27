@@ -2,6 +2,6 @@
 
 // describe('API: Jikan', ()=>{
 //     test('Search', ()=>{
-//         expect(Jikan('Evangelion', 'anime')).resolves.not.
+//         expect(Jikan('Evangelion', 'anime')).resolves.not.toMatch(/TypeError: Failed to fetch/)
 //     })
 // })

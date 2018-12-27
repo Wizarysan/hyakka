@@ -34,7 +34,7 @@ const Jikan = (query: string, type?: string, id?: string) => {
                 });
             return results
         }).catch(err=> {
-            console.error('Jikan api error');
+            console.error('Jikan api error ', err);
             return err;
         }) 
     }
