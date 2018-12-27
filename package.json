@@ -19,6 +19,12 @@
     "url": "https://github.com/Wizarysan/hyakka/issues"
   },
   "homepage": "https://github.com/Wizarysan/hyakka#readme",
+  "jest": {
+    "automock": false,
+    "setupFiles": [
+      "./setupJest.ts"
+    ]
+  },
   "dependencies": {
     "@types/react-router": "^4.4.3",
     "@types/react-router-dom": "^4.3.1",

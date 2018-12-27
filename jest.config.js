@@ -14,8 +14,4 @@ module.exports = {
     "json",
     "node"
   ],
-  "automock": false,
-  "setupFiles": [
-    "./jestSetup.ts"
-  ]
 }
