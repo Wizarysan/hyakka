@@ -5,6 +5,8 @@ import { bindActionCreators } from 'redux';
 import {connect} from 'react-redux';
 import {State} from './../../types/State';
 import {fullCardActions} from './CardFullDuck';
+import getSingleEntry from '../../search/getSingleEntry';
+
 
 interface FullCardProps {
     match: any,
@@ -40,10 +42,14 @@ class CardFull extends React.Component<FullCardProps> {
         for(let category in this.props.results.body) {
             this.props.results.body[category].forEach((item: any)=> {
                 if(item.ownId === ownId) {
+                    console.log(item)
                     this.props.actions.setFullCard(item)
+                    getSingleEntry(item.id, category).then(newItem => {
+                        console.log(newItem)
+                    })
                 }
             })
-        }
+        }                
     }
     
     render() {
