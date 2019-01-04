@@ -7,6 +7,8 @@ const getSingleEntry = (id: number, category: string) => {
     switch(category) {
         case 'anime':
             return Jikan(null, 'anime', id)
+        case 'manga':
+            return Jikan(null, 'manga', id)
     }    
 }
 
