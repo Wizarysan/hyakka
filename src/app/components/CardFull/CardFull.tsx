@@ -42,10 +42,11 @@ class CardFull extends React.Component<FullCardProps> {
         for(let category in this.props.results.body) {
             this.props.results.body[category].forEach((item: any)=> {
                 if(item.ownId === ownId) {
-                    console.log(item)
                     this.props.actions.setFullCard(item)
+                    
                     getSingleEntry(item.id, category).then(newItem => {
                         console.log(newItem)
+                        this.props.actions.setFullCard(newItem)
                     })
                 }
             })

@@ -10,10 +10,24 @@ const Jikan = (query: string, type?: string, id?: number) => {
     if(id) {
         call = BASE + type + '/' + id; 
         collector = data => {
-            let ongoing,
-            genres;
+            let ongoing, genres, start_date, author;
             data.airing!=null ? ongoing = data.airing : ongoing = data.publishing;
             genres = data.genres.map((genre: any)=> genre.name);
+            console.log(data)         
+            console.log(type)  
+            switch(type) {
+                case 'anime': 
+                    data.aired.from ? start_date = data.aired.from.substring(0,4) : start_date = '';
+                    author = data.studios[0].name;
+                    break;
+                case 'manga':
+                    data.published.from ? start_date = data.published.from.substring(0,4) : start_date = '';
+                    author = data.authors[0].name;
+                    break;
+                default:
+                    start_date = '';  
+            }                      
+            
             return {
                 id: id,
                 ownId: data.mal_id,
@@ -22,8 +36,8 @@ const Jikan = (query: string, type?: string, id?: number) => {
                 format: data.type,
                 cover: data.image_url,
                 synopsis: data.synopsis,
-                by: data.studios[0].name,
-                year: data.premiered,
+                by: author,
+                year: start_date,
                 genres: genres,
                 ratings: data.score,
                 tags: '',
