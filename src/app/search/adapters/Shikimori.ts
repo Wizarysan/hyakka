@@ -1,5 +1,5 @@
 //https://shikimori.org/api/ranobe?search=Umineko&limit=50
-const Shikimori = (query: string, type?: string) => {
+const Shikimori = (query: string, type?: string, id?: number) => {
     const BASE = '/api/shiki',
           SEARCH = `?search=${query}&type=${type}&limit=50`;
 
