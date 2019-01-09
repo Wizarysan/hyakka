@@ -37,18 +37,29 @@ const FullOngoing = styled.p`
 `
 
 class CardFull extends React.Component<FullCardProps> {
+    state = {
+        fullCardRequested: false
+    }
+    
     componentDidMount() {
         const ownId = parseInt(this.props.match.params.ownId)
         for(let category in this.props.results.body) {
             this.props.results.body[category].forEach((item: any)=> {
                 if(item.ownId === ownId) {
-                    this.props.actions.setFullCard(item)                    
-                    getSingleEntry(item.id, category).then(newItem => {
-                        this.props.actions.setFullCard(newItem)
-                    })
+                    console.log(this.props.actions.setFullCard(item))                    
+
                 }
             })
         }                
+    }
+
+    componentDidUpdate(prevProps: any) {
+        if(!this.state.fullCardRequested) {
+            getSingleEntry(this.props.fullCard.id, this.props.fullCard.type).then(newItem => {
+                this.setState({fullCardRequested: true})
+                this.props.actions.setFullCard(newItem)                
+            })
+        }
     }
     
     render() {
